@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from 'react';
 
 const initialList = [
-  { id: Data.now(), item: 'Bring reusable bags', done: false },
+  { id: Date.now(), item: 'Bring reusable bags', done: false },
 ];
 
 const listReducer = (state, action) => {
