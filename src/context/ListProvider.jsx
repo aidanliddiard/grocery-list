@@ -16,12 +16,10 @@ const listReducer = (state, action) => {
     case 'EDIT_ITEM':
       return state.map((item) => {
         if (item.id === action.payload.editedItem.id) {
-          const { done, newItem } = action.payload.editedItem;
-
           return {
             ...item,
-            done,
-            newItem,
+            done: action.payload.editedItem.done,
+            item: action.payload.editedItem.item,
           };
         }
         return item;

@@ -4,7 +4,8 @@ export default function ListItem({ listItem, handleDelete, handleEdit }) {
   const [editing, setEditing] = useState(false);
   const [change, setChange] = useState('');
 
-  const handleSave = async (change) => {
+  console.log(change);
+  const handleSave = () => {
     handleEdit({ ...listItem, item: change });
     setEditing(false);
   };
@@ -18,9 +19,7 @@ export default function ListItem({ listItem, handleDelete, handleEdit }) {
           type="text"
           value={change}
           onChange={(e) => setChange(e.target.value)}
-        >
-          {listItem.item}
-        </input>
+        />
         <button onClick={handleSave}>Save changes</button>
       </>
     );
