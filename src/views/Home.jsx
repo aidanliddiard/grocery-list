@@ -16,7 +16,6 @@ export default function Home() {
   console.log('item', newItem);
   return (
     <>
-      <h1>Grocery List</h1>
       <form>
         <input
           placeholder="Add item"

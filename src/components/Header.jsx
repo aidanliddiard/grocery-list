@@ -10,17 +10,22 @@ export default function Header() {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingRight: '30px',
       }}
     >
-      <h5>Total Items: {list.length}</h5>
-      <button
-        style={{
-          margin: '10px',
-        }}
-        onClick={handleClearList}
-      >
-        Clear List
-      </button>
+      <h1>Grocery List</h1>
+      <div>
+        <h5>Total Items: {list.length}</h5>
+        <button
+          style={{
+            padding: '10px',
+          }}
+          onClick={handleClearList}
+        >
+          Clear List
+        </button>
+      </div>
     </div>
   );
 }
