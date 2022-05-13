@@ -24,6 +24,8 @@ const listReducer = (state, action) => {
         }
         return item;
       });
+    case 'CLEAR_LIST':
+      return (state = []);
     default:
       throw new Error(`Action type ${action.type} is not supported`);
   }
@@ -45,9 +47,19 @@ export const ListProvider = ({ children }) => {
     dispatch({ type: 'EDIT_ITEM', payload: { editedItem } });
   };
 
+  const handleClearList = () => {
+    dispatch({ type: 'CLEAR_LIST' });
+  };
+
   return (
     <ListContext.Provider
-      value={{ list, handleAddItem, handleDeleteItem, handleEditItem }}
+      value={{
+        list,
+        handleAddItem,
+        handleDeleteItem,
+        handleEditItem,
+        handleClearList,
+      }}
     >
       {children}
     </ListContext.Provider>

@@ -1,12 +1,10 @@
+import { render } from 'react-dom';
 import React from 'react';
 import App from './App';
-import { ListProvider } from './context/ListProvider';
 
 render(
   <React.StrictMode>
-    <ListProvider>
-      <App />
-    </ListProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
