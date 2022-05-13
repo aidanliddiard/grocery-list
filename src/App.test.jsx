@@ -19,10 +19,10 @@ describe('App', () => {
     const addInput = screen.getByPlaceholderText('Add item');
     userEvent.type(addInput, 'eggs');
 
-    const addButton = screen.getByText(/add to my list/i);
+    const addButton = screen.getByRole('button', { name: 'Add to my list' });
     userEvent.click(addButton);
 
-    screen.getByText(/eggs/i);
+    const eggs = screen.getByText(/eggs/i);
     screen.getByText(/total items: 2/i);
 
     // test deleting an item
@@ -33,6 +33,17 @@ describe('App', () => {
     screen.getByText(/total items: 1/i);
 
     // test editing an item
+    const editButton = screen.getByRole('button', { name: 'Edit' });
+    userEvent.click(editButton);
+
+    const editingField = screen.getByLabelText('editingField');
+    userEvent.type(editingField, 'chocolate easter egggsss');
+
+    const saveButton = screen.getByRole('button', { name: 'Save changes' });
+    userEvent.click(saveButton);
+
+    expect(eggs).not.toBeInTheDocument();
+    screen.getByText(/chocolate easter egggsss/i);
 
     // test checking an item
 
