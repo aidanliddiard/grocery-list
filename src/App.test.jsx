@@ -51,5 +51,11 @@ describe('App', () => {
 
     userEvent.click(checkBox);
     expect(checkBox.checked).toEqual(true);
+
+    // test clear button
+    const clearButton = screen.getByRole('button', { name: 'Clear List' });
+    userEvent.click(clearButton);
+
+    screen.getByText(/total items: 0/i);
   });
 });
