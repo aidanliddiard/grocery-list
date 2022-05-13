@@ -46,7 +46,10 @@ describe('App', () => {
     screen.getByText(/chocolate easter egggsss/i);
 
     // test checking an item
+    const checkBox = screen.getByRole('checkbox');
+    expect(checkBox.checked).toEqual(false);
 
-    screen.debug();
+    userEvent.click(checkBox);
+    expect(checkBox.checked).toEqual(true);
   });
 });
