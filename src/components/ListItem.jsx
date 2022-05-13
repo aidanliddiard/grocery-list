@@ -21,20 +21,38 @@ export default function ListItem({ listItem, handleDelete, handleEdit }) {
           value={change}
           onChange={(e) => setChange(e.target.value)}
         />
-        <button onClick={handleSave}>Save changes</button>
+        <button
+          style={{
+            margin: '10px',
+          }}
+          onClick={handleSave}
+        >
+          Save changes
+        </button>
       </>
     );
   } else {
     content = (
       <>
-        <p>{listItem.item}</p>
-        <button onClick={() => setEditing(true)}>Edit</button>
+        <p style={{ textDecoration: listItem.done ? 'line-through' : null }}>
+          {listItem.item}
+        </p>
+        <button
+          style={{
+            margin: '10px',
+          }}
+          onClick={() => setEditing(true)}
+        >
+          Edit
+        </button>
       </>
     );
   }
 
   return (
-    <>
+    <div
+      style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+    >
       <input
         type="checkbox"
         checked={listItem.done}
@@ -43,7 +61,14 @@ export default function ListItem({ listItem, handleDelete, handleEdit }) {
         }}
       />
       {content}
-      <button onClick={() => handleDelete(listItem.id)}>Delete</button>
-    </>
+      <button
+        style={{
+          margin: '10px',
+        }}
+        onClick={() => handleDelete(listItem.id)}
+      >
+        Delete
+      </button>
+    </div>
   );
 }
