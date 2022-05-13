@@ -13,10 +13,10 @@
 
 1. Set up home page in views folder
 1. Set up App to display home page and add BrowserRouter in index
-1. Set up context
-1. Set up input and submit button on home page
 1. Create a useReducer hook
 1. Use switch statement to add, delete, and edit items
+1. Set up input and submit button on home page
+1. Set up context
 1. Create a dispatch function to update state
 1. Add a header component
 1. Behavioral testing

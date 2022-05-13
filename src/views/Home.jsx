@@ -30,7 +30,11 @@ export default function Home() {
       <ul>
         {list.map((listItem) => (
           <li key={listItem.id}>
-            <ListItem listItem={listItem} handleDelete={handleDeleteItem} />
+            <ListItem
+              listItem={listItem}
+              handleDelete={handleDeleteItem}
+              handleEdit={handleEditItem}
+            />
           </li>
         ))}
       </ul>

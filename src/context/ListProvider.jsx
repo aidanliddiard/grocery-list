@@ -13,8 +13,19 @@ const listReducer = (state, action) => {
       ];
     case 'DELETE_ITEM':
       return state.filter((item) => item.id != action.payload.id);
-    // case 'EDIT_ITEM':
-    //   return [];
+    case 'EDIT_ITEM':
+      return state.map((item) => {
+        if (item.id === action.payload.editedItem.id) {
+          const { done, newItem } = action.payload.editedItem;
+
+          return {
+            ...item,
+            done,
+            newItem,
+          };
+        }
+        return item;
+      });
     default:
       throw new Error(`Action type ${action.type} is not supported`);
   }
@@ -32,8 +43,8 @@ export const ListProvider = ({ children }) => {
     dispatch({ type: 'DELETE_ITEM', payload: { id } });
   };
 
-  const handleEditItem = (item) => {
-    dispatch({ type: 'EDIT_ITEM', payload: { item } });
+  const handleEditItem = (editedItem) => {
+    dispatch({ type: 'EDIT_ITEM', payload: { editedItem } });
   };
 
   return (
