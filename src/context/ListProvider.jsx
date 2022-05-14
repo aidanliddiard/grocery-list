@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 
 const initialList = [
   { id: Date.now(), item: 'Bring reusable bags', done: false },
@@ -26,6 +26,12 @@ const listReducer = (state, action) => {
       });
     case 'CLEAR_LIST':
       return (state = []);
+    case 'LOCAL_STORAGE':
+      return action.payload.localStorageList.map((item) => ({
+        id: item.id,
+        item: item.item,
+        done: item.done,
+      }));
     default:
       throw new Error(`Action type ${action.type} is not supported`);
   }
@@ -50,6 +56,17 @@ export const ListProvider = ({ children }) => {
   const handleClearList = () => {
     dispatch({ type: 'CLEAR_LIST' });
   };
+
+  useEffect(() => {
+    if (list != initialList) {
+      localStorage.setItem('item', JSON.stringify(list));
+    }
+  }, [list]);
+
+  useEffect(() => {
+    const localStorageList = JSON.parse(localStorage.getItem('item'));
+    dispatch({ type: 'LOCAL_STORAGE', payload: { localStorageList } });
+  }, []);
 
   return (
     <ListContext.Provider
